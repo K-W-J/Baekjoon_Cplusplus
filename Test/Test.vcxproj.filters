@@ -18,7 +18,7 @@
     <ClCompile Include="1019.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="9.1차원배열.cpp">
+    <ClCompile Include="1019.TimeOver.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

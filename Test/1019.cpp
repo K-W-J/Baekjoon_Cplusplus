@@ -2,29 +2,56 @@
 
 int main()
 {
-	int pages = 0, temp = 0, temp2 = 1;
-	int arr[10]{0};
+	long pages = 0, temp = 0, temp2 = 1, temp3 = 0;
+	long arr[10]{0};
 
 	std::cin >> pages;
 
-	for (int i = pages; i > 0; i = i / 10) // 223
+	for (long i = pages; i > 0; i = i / 10) // 223
 	{
-		temp = pages % 10; // 3 2 2
+		temp = i % 10; // 3 2 2
+
 
 		if (pages != i) //일의 자리수가 아니라면
 			temp2 *= 10;
+
+		temp3 = pages % temp2;
+
 
 		for (int j = 0; j <= temp; j++)
 		{
 			for (int k = 0; k < 10; k++)
 			{	
-				if(j == 0 && j == k) //일의 자리수라면
-					arr[k + 1] += 1;
-				else if (j == k)
-					arr[k] += 1 + temp;
+				if (j == 0 && j == k) //일의 자리수이고 0 페이지는 없는니까 제외
+					break;
+
+				if (j == k && temp2 < 10) //일의 자리일 때만 실행
+				{
+					arr[k] += 1;
+					break;
+				}
+
+				if(temp2 >= 10)
+				{
+					arr[k] += temp + temp2 / 10;
+				}
+
+				if(temp2 >= 10 && temp3 >= k)
+					arr[j] += temp + temp2 / 10; // 23에서 10 11 ~ 18 19에서 1의 개수
+
+
+				//std::cout << "E";
+
 			}
 		}
+
+		//if(temp2 >= 10)
+			//arr[temp] += temp3;
 	}
+
+	for (auto ar : arr)
+		std::cout << ar << " ";
+
 
 	//for (int i = 1; i < pages; i *= 10)
 	//{
@@ -55,6 +82,4 @@ int main()
 	//	arr[0] += temp * i / 10; // 0의 자릿 수 계산
 	//}
 
-	for (auto ar : arr)
-		std::cout << ar << " ";
 }
